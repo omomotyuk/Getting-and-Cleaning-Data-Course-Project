@@ -47,15 +47,13 @@ subject_activity_set <- merge( subject_activity_set,activity_labels,by.x="Activi
 
 data_set <- cbind( subject_activity_set,data_set )
 
-library( dplyr )
-
-data_tbl <- tbl_df( data_set )
-
 ##
 ## From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 ##
 
+library( dplyr )
+
+data_tbl <- tbl_df( data_set )
+
 group_by( data_tbl, Subject, Activity.labels ) %>%
    summarise_all( funs( mean ) ) 
-
-
