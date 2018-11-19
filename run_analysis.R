@@ -1,5 +1,5 @@
 ##
-## 1. Download and unzip data files.
+## 1. Download and unzip data files:
 ##
 
 fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
@@ -8,7 +8,7 @@ download.file( fileUrl,destfile="getdata_projectfiles_UCI HAR Dataset.zip" )
 system( "unzip getdata_projectfiles_UCI\\ HAR\\ Dataset.zip" )
 
 ##
-##  2. Merges the training and the test sets to create one data set.
+##  2. Merges the training and the test sets to create one data set:
 ##
 
 X_train <- read.table("./UCI HAR Dataset/train/X_train.txt")
@@ -17,7 +17,7 @@ X_test <- read.table("./UCI HAR Dataset/test/X_test.txt")
 data_set <- rbind( X_train,X_test )
 
 ##
-## 3. Extracts only the measurements on the mean and standard deviation for each measurement.
+## 3. Extracts only the measurements on the mean and standard deviation for each measurement:
 ##
 
 features <- read.table("./UCI HAR Dataset/features.txt")
@@ -26,7 +26,7 @@ data_set <- data_set[ grepl( "-mean\\(|-std\\(" ,names(data_set) ) ]
 
 ##
 ## 4. Uses descriptive activity names to name the activities in the data set and 
-##    appropriately labels the data set with descriptive variable names.
+##    appropriately labels the data set with descriptive variable names:
 ##
 
 subject_train <- read.table("./UCI HAR Dataset/train/subject_train.txt")
@@ -50,7 +50,7 @@ subject_activity_set <- merge( subject_activity_set,activity_labels,by.x="Activi
 data_set <- cbind( subject_activity_set,data_set )
 
 ##
-## 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+## 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject:
 ##
 
 library( dplyr )
@@ -68,7 +68,7 @@ group_by( data, Subject, Activity ) %>%
 tidyDataSet <- tidyData( data_tbl )
 
 ##
-## 6. Writes tidy data set in tidyDataSet.csv file and prepares draft CodeBook.md file.
+## 6. Writes tidy data set in tidyDataSet.csv file and prepares draft CodeBook.md file:
 ##
 
 write.csv( tidyDataSet,file="tidyDataSet.csv",row.names = FALSE)
