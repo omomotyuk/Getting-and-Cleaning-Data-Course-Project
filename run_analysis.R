@@ -75,3 +75,4 @@ write.csv( tidyDataSet,file="tidyDataSet.csv",row.names = FALSE)
 write.table( names(tidyDataSet),file="addToCodeBook.txt",quote = FALSE,sep = "\t" )
 
 system( "cat ./UCI\\ HAR\\ Dataset/README.txt ./UCI\\ HAR\\ Dataset/features_info.txt ./UCI\\ HAR\\ Dataset/activity_labels.txt addToCodeBook.txt > CodeBook.md" )
+
